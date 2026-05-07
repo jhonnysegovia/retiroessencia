@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardiãs Ancestrais · Retiro A Essência do Ser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --sand: #e8dcc8;
+    --gold: #c4a265;
+    --gold-light: #d4b87a;
+    --brown-dark: #3a2a1a;
+    --brown-mid: #6b4c2a;
+    --brown-light: #9b7a50;
+    --text-dark: #2c1f10;
+    --text-mid: #5a4030;
+    --text-light: #8a7060;
+    --purple: #7c5c8a;
+    --purple-light: #a67cb8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--warm-white);
+    color: var(--text-dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURA DE FUNDO ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(196,162,101,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(124,92,138,0.10) 0%, transparent 50%),
+      var(--warm-white);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-ornament {
+    width: 200px;
+    margin: 0 auto 28px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.2s;
+  }
+
+  .hero-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.5s;
+    position: relative;
+  }
+
+  .hero-logo-text span {
+    display: block;
+    font-size: 0.48em;
+    font-weight: 300;
+    color: var(--brown-light);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 28px auto;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.8s;
+  }
+
+  .hero-divider-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-lotus {
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 580px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 1s;
+  }
+
+  .hero-info {
+    margin-top: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 1.2s;
+  }
+
+  .hero-info-item {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+  }
+
+  .hero-info-item strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 1.5s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--gold);
+    color: var(--brown-dark);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--brown-dark);
+    transform: translateX(-101%);
+    transition: transform 0.4s ease;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { color: var(--cream); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--brown-dark);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--brown-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 2s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── CHAMADO ── */
+  .section-chamado {
+    padding: 120px 24px;
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-chamado::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .display-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--text-dark);
+    margin-bottom: 32px;
+  }
+
+  .display-text em {
+    font-style: italic;
+    color: var(--purple);
+  }
+
+  .body-text {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  /* ── CAVALOS ── */
+  .section-cavalos {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, transparent 0%, rgba(196,162,101,0.06) 50%, transparent 100%);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cavalos-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .cavalos-text { padding-right: 20px; }
+
+  .cavalos-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin: 24px 0;
+  }
+
+  .cavalos-quote strong {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--purple);
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    margin-top: 12px;
+  }
+
+  .cavalos-pillars {
+    list-style: none;
+    margin-top: 36px;
+  }
+
+  .cavalos-pillars li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(196,162,101,0.25);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    letter-spacing: 0.02em;
+  }
+
+  .cavalos-pillars li:first-child { border-top: 1px solid rgba(196,162,101,0.25); }
+
+  .pillar-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cavalos-visual {
+    position: relative;
+  }
+
+  .image-frame {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--sand);
+    overflow: hidden;
+  }
+
+  .image-frame::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(196,162,101,0.4);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .image-frame-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c8b89a 0%, #a89278 50%, #8a7060 100%);
+    position: relative;
+  }
+
+  .image-placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 24px;
+    line-height: 1.7;
+  }
+
+  .image-tag {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--purple);
+    color: white;
+    padding: 14px 22px;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  /* ── PRÁTICAS ── */
+  .section-praticas {
+    padding: 120px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .praticas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,162,101,0.2);
+  }
+
+  .pratica-card {
+    background: var(--warm-white);
+    padding: 48px 36px;
+    text-align: center;
+    transition: background 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pratica-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .pratica-card:hover { background: var(--cream); }
+  .pratica-card:hover::before { transform: scaleX(1); }
+
+  .pratica-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(196,162,101,0.25);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pratica-icon {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pratica-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+
+  .pratica-desc {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── PROGRAMAÇÃO ── */
+  .section-programacao {
+    padding: 120px 24px;
+    background: var(--brown-dark);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-programacao::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(124,92,138,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 50%, rgba(196,162,101,0.1) 0%, transparent 50%);
+  }
+
+  .programacao-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-programacao .section-header .eyebrow { color: var(--gold-light); }
+  .section-programacao .section-header .display-text { color: var(--cream); }
+
+  .dias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .dia-card {
+    border-top: 1px solid rgba(196,162,101,0.4);
+    padding-top: 28px;
+  }
+
+  .dia-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .dia-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .dia-itens {
+    list-style: none;
+  }
+
+  .dia-itens li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.7);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    line-height: 1.5;
+  }
+
+  .dia-itens li:last-child { border-bottom: none; }
+
+  .dia-hora {
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 400;
+    flex-shrink: 0;
+    width: 36px;
+    padding-top: 1px;
+  }
+
+  /* ── LUGAR ── */
+  .section-lugar {
+    padding: 120px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .lugar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .lugar-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+
+  .lugar-img {
+    aspect-ratio: 1;
+    background: var(--sand);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .lugar-img-large {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+
+  .lugar-img-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lugar-img:nth-child(1) .lugar-img-inner {
+    background: linear-gradient(135deg, #7a9e6a 0%, #4a7a3a 100%);
+  }
+  .lugar-img:nth-child(2) .lugar-img-inner {
+    background: linear-gradient(135deg, #9a8a6a 0%, #7a6a4a 100%);
+  }
+  .lugar-img:nth-child(3) .lugar-img-inner {
+    background: linear-gradient(135deg, #8a9a7a 0%, #6a7a5a 100%);
+  }
+
+  .img-placeholder {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 16px;
+  }
+
+  /* ── BELLA VIERO ── */
+  .section-bella {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, transparent, rgba(124,92,138,0.06), transparent);
+    position: relative;
+    z-index: 1;
+  }
+
+  .bella-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .bella-badge {
+    display: inline-block;
+    background: var(--purple);
+    color: white;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    margin-bottom: 36px;
+  }
+
+  .bella-oracle {
+    margin-top: 48px;
+    padding: 40px;
+    border: 1px solid rgba(196,162,101,0.3);
+    background: rgba(196,162,101,0.04);
+    position: relative;
+  }
+
+  .bella-oracle::before {
+    content: '✦';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--warm-white);
+    padding: 0 16px;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .oracle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--purple);
+    margin-bottom: 12px;
+  }
+
+  .oracle-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* ── PARA QUEM ── */
+  .section-paraquem {
+    padding: 120px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .paraquem-list {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .paraquem-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(196,162,101,0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .paraquem-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .paraquem-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: rgba(196,162,101,0.3);
+    line-height: 1;
+    text-align: right;
+  }
+
+  .paraquem-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding-top: 8px;
+  }
+
+  /* ── INVESTIMENTO ── */
+  .section-investimento {
+    padding: 120px 24px;
+    background: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  .investimento-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .preco-destaque {
+    margin: 48px auto;
+    padding: 56px 40px;
+    border: 1px solid var(--gold);
+    position: relative;
+    background: white;
+  }
+
+  .preco-destaque::before,
+  .preco-destaque::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+
+  .preco-destaque::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+
+  .preco-destaque::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+
+  .preco-lote {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .preco-valor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1;
+  }
+
+  .preco-valor small {
+    font-size: 1.5rem;
+    vertical-align: top;
+    margin-top: 10px;
+    display: inline-block;
+    color: var(--brown-light);
+  }
+
+  .preco-prazo {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--purple);
+    font-weight: 400;
+  }
+
+  .preco-inclui {
+    margin-top: 28px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    border-top: 1px solid var(--sand);
+    padding-top: 24px;
+  }
+
+  .preco-inclui li {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .preco-inclui li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.8rem;
+  }
+
+  .urgencia {
+    margin-top: 24px;
+    padding: 16px 24px;
+    background: rgba(196,162,101,0.1);
+    border-left: 3px solid var(--gold);
+    font-size: 0.85rem;
+    color: var(--brown-mid);
+    text-align: left;
+  }
+
+  .cta-final {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  /* ── FECHAMENTO ── */
+  .section-fechamento {
+    padding: 140px 24px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fechamento-frase {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 48px;
+  }
+
+  .fechamento-frase em {
+    color: var(--purple);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 24px;
+    background: var(--brown-dark);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 24px;
+  }
+
+  .footer-contact {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 2;
+  }
+
+  .footer-contact a {
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  .footer-contact a:hover { text-decoration: underline; }
+
+  .footer-copy {
+    margin-top: 32px;
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── DIVIDER ORNAMENTAL ── */
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .ornament-divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .ornament-divider-line:last-child {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .ornament-divider-symbol {
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    .cavalos-inner,
+    .lugar-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .cavalos-text { padding-right: 0; }
+
+    .praticas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dias-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lugar-visual {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .paraquem-item {
+      grid-template-columns: 40px 1fr;
+    }
+
+    .image-tag {
+      right: 0;
+      bottom: -16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-ornament">
+    <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="40" r="30" stroke="#c4a265" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <circle cx="100" cy="40" r="20" stroke="#c4a265" stroke-width="0.4"/>
+      <!-- Silhueta de cavalo estilizada -->
+      <path d="M85 50 Q88 45 92 44 Q94 38 98 36 Q100 34 103 35 Q107 33 110 36 Q112 38 111 42 Q115 44 116 48 Q113 50 110 49 Q108 52 105 53 Q100 55 95 53 Q90 52 88 50 Z" fill="#7c5c8a" opacity="0.6"/>
+      <!-- Pétalas de mandala -->
+      <path d="M100 10 Q104 20 100 25 Q96 20 100 10Z" fill="#c4a265" opacity="0.5"/>
+      <path d="M100 70 Q104 60 100 55 Q96 60 100 70Z" fill="#c4a265" opacity="0.5"/>
+      <path d="M70 40 Q80 44 82 40 Q80 36 70 40Z" fill="#c4a265" opacity="0.5"/>
+      <path d="M130 40 Q120 44 118 40 Q120 36 130 40Z" fill="#c4a265" opacity="0.5"/>
+      <path d="M79 19 Q86 28 83 32 Q79 30 79 19Z" fill="#c4a265" opacity="0.35"/>
+      <path d="M121 19 Q114 28 117 32 Q121 30 121 19Z" fill="#c4a265" opacity="0.35"/>
+      <path d="M79 61 Q86 52 83 48 Q79 50 79 61Z" fill="#c4a265" opacity="0.35"/>
+      <path d="M121 61 Q114 52 117 48 Q121 50 121 61Z" fill="#c4a265" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <div class="hero-logo-text">
+    <span>Retiro · A Essência do Ser</span>
+    Guardiãs Ancestrais
+  </div>
+
+  <div class="hero-divider">
+    <div class="hero-divider-line"></div>
+    <span class="hero-lotus">❋</span>
+    <div class="hero-divider-line"></div>
+  </div>
+
+  <p class="hero-subtitle">
+    Um chamado para desacelerar, se reconectar<br>e lembrar quem você é na sua essência.
+  </p>
+
+  <div class="hero-info">
+    <span class="hero-info-item"><strong>19 · 20 · 21</strong> de junho de 2026</span>
+    <span class="hero-info-item">·</span>
+    <span class="hero-info-item">Montanha Encantada · <strong>Garopaba / SC</strong></span>
+    <span class="hero-info-item">·</span>
+    <span class="hero-info-item">3 dias · 2 noites · <strong>vagas limitadas</strong></span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#investimento" class="btn-primary"><span>Quero reservar minha vaga</span></a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descubra</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ CHAMADO ══ -->
+<section class="section-chamado">
+  <span class="eyebrow">O chamado</span>
+  <h2 class="display-text">
+    Existe uma parte sua<br>
+    que está pedindo para <em>voltar.</em>
+  </h2>
+  <div class="ornament-divider" style="margin-bottom: 32px;">
+    <div class="ornament-divider-line"></div>
+    <span class="ornament-divider-symbol">✦</span>
+    <div class="ornament-divider-line"></div>
+  </div>
+  <p class="body-text">
+    Cansada de sustentar tudo? De seguir… mesmo quando algo em você precisa parar?<br><br>
+    Esse retiro não é sobre fazer mais.<br>
+    É sobre <strong>voltar para si.</strong><br><br>
+    Durante três dias de imersão profunda na natureza, você será acolhida em um ambiente seguro, 
+    amoroso e cuidadosamente preparado para sustentar processos de cura emocional, energética e espiritual.<br><br>
+    Aqui, você não precisa performar, explicar ou sustentar nada.<br>
+    <strong>Você apenas é.</strong>
+  </p>
+</section>
+
+<!-- ══ CAVALOS ══ -->
+<section class="section-cavalos">
+  <div class="cavalos-inner">
+    <div class="cavalos-text">
+      <span class="eyebrow">A medicina dos cavalos</span>
+      <blockquote class="cavalos-quote">
+        "Os cavalos não respondem à aparência.<br>
+        Eles respondem à sua verdade."
+        <strong>— Guardiãs Ancestrais</strong>
+      </blockquote>
+      <p class="body-text" style="margin-bottom: 16px;">
+        Na presença deles, máscaras caem, defesas se dissolvem e o corpo volta a sentir. 
+        São espelhos da alma — guardiões da verdade emocional que mora em você.
+      </p>
+      <ul class="cavalos-pillars">
+        <li><span class="pillar-dot"></span> Regular emoções com presença e segurança</li>
+        <li><span class="pillar-dot"></span> Acessar o momento presente de forma genuína</li>
+        <li><span class="pillar-dot"></span> Desenvolver autoconfiança e limites saudáveis</li>
+        <li><span class="pillar-dot"></span> Reconectar-se com a intuição e o corpo</li>
+        <li><span class="pillar-dot"></span> Revelar padrões que as palavras não alcançam</li>
+      </ul>
+    </div>
+    <div class="cavalos-visual">
+      <div class="image-frame">
+        <div class="image-frame-inner">
+          <p class="image-placeholder-text">
+            Insira aqui uma foto<br>real dos cavalos<br>ou da conexão<br>mulher–cavalo
+          </p>
+        </div>
+        <div class="image-tag">A medicina dos cavalos 🐎</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRÁTICAS ══ -->
+<section class="section-praticas">
+  <div class="section-header">
+    <span class="eyebrow">O que você irá vivenciar</span>
+    <h2 class="display-text">Um caminho de<br><em>cura e reconexão</em></h2>
+    <div class="ornament-divider" style="margin-top: 24px;">
+      <div class="ornament-divider-line"></div>
+      <span class="ornament-divider-symbol">✦</span>
+      <div class="ornament-divider-line"></div>
+    </div>
+  </div>
+
+  <div class="praticas-grid">
+    <div class="pratica-card">
+      <span class="pratica-num">01</span>
+      <span class="pratica-icon">🐎</span>
+      <h3 class="pratica-title">Conexão com os Cavalos</h3>
+      <p class="pratica-desc">Seres de extrema sensibilidade, os cavalos atuam como espelhos da alma. Eles acessam camadas profundas do sentir, revelando padrões e verdades que muitas vezes não conseguimos nomear.</p>
+    </div>
+    <div class="pratica-card">
+      <span class="pratica-num">02</span>
+      <span class="pratica-icon">✨</span>
+      <h3 class="pratica-title">Terapias Energéticas</h3>
+      <p class="pratica-desc">Reiki e práticas multidimensionais para limpeza, alinhamento e harmonização do campo energético. Promoção de equilíbrio, expansão de consciência e liberação de bloqueios emocionais.</p>
+    </div>
+    <div class="pratica-card">
+      <span class="pratica-num">03</span>
+      <span class="pratica-icon">☕</span>
+      <h3 class="pratica-title">Cerimônia do Cacau</h3>
+      <p class="pratica-desc">Um ritual ancestral de abertura do coração. O cacau convida a suavizar, sentir e acessar estados mais profundos de conexão, amor e verdade interior.</p>
+    </div>
+    <div class="pratica-card">
+      <span class="pratica-num">04</span>
+      <span class="pratica-icon">🌿</span>
+      <h3 class="pratica-title">Reconexão Ancestral</h3>
+      <p class="pratica-desc">Vivências que resgatam a memória do feminino, honram a linhagem das mulheres que vieram antes e fortalecem o pertencimento à sua própria história.</p>
+    </div>
+    <div class="pratica-card">
+      <span class="pratica-num">05</span>
+      <span class="pratica-icon">🧘‍♀️</span>
+      <h3 class="pratica-title">Yoga Integrativa</h3>
+      <p class="pratica-desc">Práticas matinais para despertar o corpo, integrar as experiências e criar espaço interno para o que está para ser vivido ao longo do dia.</p>
+    </div>
+    <div class="pratica-card">
+      <span class="pratica-num">06</span>
+      <span class="pratica-icon">🔥</span>
+      <h3 class="pratica-title">Rodas de Partilha</h3>
+      <p class="pratica-desc">Um espaço seguro onde cada mulher pode ser vista, acolhida e respeitada em sua jornada. Sem julgamentos. Sem máscaras. Com verdade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAMAÇÃO ══ -->
+<section class="section-programacao">
+  <div class="programacao-inner">
+    <div class="section-header">
+      <span class="eyebrow">A jornada dos três dias</span>
+      <h2 class="display-text">Programação</h2>
+    </div>
+
+    <div class="dias-grid">
+      <div class="dia-card">
+        <span class="dia-label">Sexta · 19 de junho</span>
+        <h3 class="dia-title">Chegada & Abertura</h3>
+        <ul class="dia-itens">
+          <li><span class="dia-hora">16h</span> Check-in e acomodação</li>
+          <li><span class="dia-hora">18h</span> Abertura do retiro</li>
+          <li><span class="dia-hora">18h</span> Cerimônia do Cacau ☕</li>
+          <li><span class="dia-hora">19h</span> Jantar em grupo 🍽</li>
+          <li><span class="dia-hora"></span> Noite de chegada e presença</li>
+        </ul>
+      </div>
+      <div class="dia-card">
+        <span class="dia-label">Sábado · 20 de junho</span>
+        <h3 class="dia-title">Conexão & Cura</h3>
+        <ul class="dia-itens">
+          <li><span class="dia-hora">7h</span> Yoga integrativa 🧘‍♀️</li>
+          <li><span class="dia-hora">8h30</span> Café da manhã ☕</li>
+          <li><span class="dia-hora">10h</span> Roda de cura com cavalos 🐎</li>
+          <li><span class="dia-hora">13h</span> Almoço 🍽</li>
+          <li><span class="dia-hora">14h30</span> Movimentos sistêmicos</li>
+          <li><span class="dia-hora">17h</span> Integração na fogueira 🔥</li>
+          <li><span class="dia-hora">19h</span> Jantar em grupo</li>
+        </ul>
+      </div>
+      <div class="dia-card">
+        <span class="dia-label">Domingo · 21 de junho</span>
+        <h3 class="dia-title">Integração & Gratidão</h3>
+        <ul class="dia-itens">
+          <li><span class="dia-hora">7h</span> Yoga integrativa 🧘‍♀️</li>
+          <li><span class="dia-hora">8h30</span> Café da manhã ☕</li>
+          <li><span class="dia-hora">10h</span> Tempo livre de integração 🌿</li>
+          <li><span class="dia-hora"></span> Massagem · Cavalgada · Trilha</li>
+          <li><span class="dia-hora"></span> Praia 🌊</li>
+          <li><span class="dia-hora"></span> Encerramento e despedidas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ O LUGAR ══ -->
+<section class="section-lugar">
+  <div class="lugar-inner">
+    <div>
+      <span class="eyebrow">O espaço sagrado</span>
+      <h2 class="display-text">Montanha Encantada<br><em>Garopaba · SC</em></h2>
+      <div class="ornament-divider" style="justify-content: flex-start; margin: 24px 0;">
+        <div class="ornament-divider-line" style="width: 40px;"></div>
+        <span class="ornament-divider-symbol">✦</span>
+      </div>
+      <p class="body-text">
+        Um refúgio cercado pela natureza exuberante de Santa Catarina. 
+        Um lugar onde o tempo desacelera, a mente se aquieta e o coração encontra espaço para se abrir.<br><br>
+        Com cavalos livres, mata nativa, ar puro da montanha e proximidade com o mar — 
+        o ambiente em si já é parte da cura.
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="https://wa.me/5548996675225" target="_blank" class="btn-secondary">Falar pelo WhatsApp</a>
+      </div>
+    </div>
+    <div class="lugar-visual">
+      <div class="lugar-img lugar-img-large">
+        <div class="lugar-img-inner">
+          <p class="img-placeholder">Foto da Montanha Encantada · Vista geral do espaço</p>
+        </div>
+      </div>
+      <div class="lugar-img">
+        <div class="lugar-img-inner">
+          <p class="img-placeholder" style="font-size:0.75rem">Os cavalos no espaço</p>
+        </div>
+      </div>
+      <div class="lugar-img">
+        <div class="lugar-img-inner">
+          <p class="img-placeholder" style="font-size:0.75rem">Área de convivência</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BELLA VIERO ══ -->
+<section class="section-bella">
+  <div class="bella-inner">
+    <div class="bella-badge">✦ Participação especial ✦</div>
+    <h2 class="display-text"><em>Bella Viero</em></h2>
+    <p class="body-text">
+      Uma presença especial que eleva ainda mais a magia desse encontro. 
+      Bella Viero traz ao retiro o lançamento exclusivo do seu novo oráculo — 
+      uma experiência única que só quem estiver presente poderá vivenciar.
+    </p>
+    <div class="bella-oracle">
+      <div class="oracle-title">Oráculo · A Magia das Fadas</div>
+      <p class="oracle-desc">
+        Um oráculo mágico como você nunca viu.<br>
+        Lançamento exclusivo presencial durante o retiro.<br>
+        <em>@bellaviero_</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARA QUEM É ══ -->
+<section class="section-paraquem">
+  <div class="section-header" style="text-align:left;">
+    <span class="eyebrow">Para quem é este retiro</span>
+    <h2 class="display-text">Para mulheres que <em>sentem</em><br>o chamado de…</h2>
+  </div>
+
+  <div class="paraquem-list">
+    <div class="paraquem-item">
+      <span class="paraquem-number">01</span>
+      <p class="paraquem-text">Olhar para dentro e reconectar-se com sua essência e propósito</p>
+    </div>
+    <div class="paraquem-item">
+      <span class="paraquem-number">02</span>
+      <p class="paraquem-text">Buscar cura emocional e energética de forma profunda e enraizada</p>
+    </div>
+    <div class="paraquem-item">
+      <span class="paraquem-number">03</span>
+      <p class="paraquem-text">Fortalecer a espiritualidade e honrar a própria ancestralidade</p>
+    </div>
+    <div class="paraquem-item">
+      <span class="paraquem-number">04</span>
+      <p class="paraquem-text">Soltar o que já não faz sentido e relembrar quem você é</p>
+    </div>
+    <div class="paraquem-item">
+      <span class="paraquem-number">05</span>
+      <p class="paraquem-text">Despertar a guardiã que habita em você — e finalmente voltar para si</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INVESTIMENTO ══ -->
+<section class="section-investimento" id="investimento">
+  <div class="investimento-inner">
+    <span class="eyebrow">Investimento</span>
+    <h2 class="display-text">Reserve sua <em>vaga</em></h2>
+
+    <div class="preco-destaque">
+      <span class="preco-lote">✦ Lote 1 — Vagas limitadas ✦</span>
+      <div class="preco-valor">
+        <small>R$</small> 1.580
+      </div>
+      <p class="preco-prazo">Até 15 de maio de 2026</p>
+
+      <ul class="preco-inclui">
+        <li>3 dias e 2 noites de imersão completa</li>
+        <li>Alimentação incluída (café da manhã, almoço e jantar)</li>
+        <li>Todas as práticas e cerimônias do retiro</li>
+        <li>Participação especial de Bella Viero</li>
+        <li>Lançamento exclusivo do Oráculo A Magia das Fadas</li>
+        <li>Conexão com os cavalos · Yoga · Terapias energéticas</li>
+      </ul>
+    </div>
+
+    <div class="urgencia">
+      ⚠️ <strong>Vagas limitadas.</strong> O Lote 1 encerra em 15/05 ou quando esgotar. 
+      Garanta o menor valor e confirme sua presença.
+    </div>
+
+    <div class="cta-final">
+      <a href="https://wa.me/5548996675225" target="_blank" class="btn-primary" style="width: 100%; text-align: center;">
+        <span>Reservar pelo WhatsApp</span>
+      </a>
+      <a href="https://instagram.com/guardias.ancestrais" target="_blank" class="btn-secondary" style="width: 100%; text-align: center;">
+        Falar pelo Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FECHAMENTO ══ -->
+<section class="section-fechamento">
+  <div class="ornament-divider" style="margin-bottom: 48px;">
+    <div class="ornament-divider-line"></div>
+    <span class="ornament-divider-symbol">✦</span>
+    <div class="ornament-divider-line"></div>
+  </div>
+
+  <p class="fechamento-frase">
+    "Dentro de você existe uma mulher que sabe.<br>
+    Uma mulher que sente.<br>
+    Uma mulher que guarda memórias antigas…<br>
+    e também o <em>caminho de volta.</em>"
+  </p>
+
+  <div class="ornament-divider" style="margin-bottom: 48px;">
+    <div class="ornament-divider-line"></div>
+    <span class="ornament-divider-symbol" style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; color: var(--purple);">Guardiãs Ancestrais</span>
+    <div class="ornament-divider-line"></div>
+  </div>
+
+  <a href="#investimento" class="btn-primary"><span>É tempo de retornar 🌿</span></a>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">Guardiãs Ancestrais</div>
+  <p class="footer-sub">Retiro · A Essência do Ser</p>
+  <div class="footer-contact">
+    <p>📍 Montanha Encantada · Garopaba, Santa Catarina</p>
+    <p>19 a 21 de junho de 2026</p>
+    <p style="margin-top: 12px;">
+      <a href="https://wa.me/5548996675225">WhatsApp: (48) 99667-5225</a>
+    </p>
+    <p>
+      <a href="https://instagram.com/guardias.ancestrais">@guardias.ancestrais</a>
+    </p>
+  </div>
+  <p class="footer-copy">© 2026 Guardiãs Ancestrais · Todos os direitos reservados</p>
+</footer>
+
+<script>
+  // Scroll reveal para itens "para quem"
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.paraquem-item').forEach(el => observer.observe(el));
+
+  // Scroll reveal genérico para seções
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pratica-card, .dia-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    fadeObserver.observe(el);
+  });
+</script>
+
+</body>
+</html>
